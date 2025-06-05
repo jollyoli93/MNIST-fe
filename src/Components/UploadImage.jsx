@@ -4,8 +4,8 @@ import axios from 'axios'
 export default function UploadImage({ image, setImage }) {
     const [response, setResponse] = useState();
 
-    const dev_url = 'http://localhost:7071/api/httppost';
-    const prod_url = ''
+    //const dev_url = 'http://localhost:7071/api/httppost';
+    const url = `${import.meta.env.VITE_IMAGEBLOB_URL}${import.meta.env.VITE_IMAGEBLOB_KEY}`
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +21,7 @@ export default function UploadImage({ image, setImage }) {
         formData.append('image', image);
 
         try {
-            const response = await axios.post(dev_url, formData, {
+            const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
